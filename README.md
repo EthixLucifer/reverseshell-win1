@@ -16,8 +16,8 @@ A Python-based utility for generating obfuscated Base64-encoded PowerShell rever
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/powershell-reverse-generator.git
-cd powershell-reverse-generator
+git clone https://github.com/Ethixlucifer/powershell-win1.git
+cd powershell-win1
 ```
 
 2. Generate payload:
